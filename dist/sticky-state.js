@@ -195,6 +195,8 @@ var StickyState = function (_EventDispatcher) {
   };
 
   StickyState.prototype.setState = function setState(newState, silent) {
+    // fugly fix for https://jira.unitb.com/browse/GABONN-1119
+    if (newState && this.target.getAttribute('data-site-header-offset-top')) newState.style.top = this.target.getAttribute('data-site-header-offset-top');
     this.lastState = this.state || newState;
     this.state = (0, _objectAssign2.default)({}, this.state, newState);
     if (silent !== true) {
